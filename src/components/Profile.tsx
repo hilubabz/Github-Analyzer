@@ -21,7 +21,7 @@ interface ProfileProps {
 
 const Profile = ({ userData }: ProfileProps) => {
   return (
-    <div className=" bg-[var(--card)] shadow-lg rounded-xl p-7 transition-all duration-500">
+    <div className=" bg-(--card) shadow-lg rounded-xl p-7 transition-all duration-500">
       <div className="flex flex-col md:flex-row justify-center items-center gap-2 shrink-0">
         <div className="h-[150px] w-[150px] rounded-full overflow-hidden shrink-0">
           <img

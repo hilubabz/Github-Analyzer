@@ -37,10 +37,10 @@ const App = () => {
   }, [darkMode]);
   return (
     <div
-      className={`px-5 lg:px-10 pt-10 min-h-[100vh] bg-[var(--bg)] text-[var(--text)] transition-all duration-500 ease-in-out pb-2 max-w-[100vw]`}
+      className={`px-5 lg:px-10 pt-10 min-h-[100vh] bg-[var(--bg)] text-(--text) transition-all duration-500 ease-in-out pb-2 max-w-[100vw]`}
     >
       <div
-        className={`flex justify-between p-5 shadow-lg rounded-xl items-center bg-[var(--card)]`}
+        className={`flex justify-between p-5 shadow-lg rounded-xl items-center bg-(--card)`}
       >
         <div className="flex gap:10 md:gap-30 w-[75%] items-center">
           <div className="font-semibold text-sm md:text-xl">Repo Analyzer</div>
@@ -69,7 +69,7 @@ const App = () => {
           </div>
         </div>
         <div
-          className="lg:hidden h-10 w-10 flex items-center justify-center text-2xl bg-[var(--background)] text-[var(--text)] shadow-lg rounded-2xl"
+          className="lg:hidden h-10 w-10 flex items-center justify-center text-2xl bg-[var(--background)] text-(--text) shadow-lg rounded-2xl"
           onClick={() => setDarkMode((prev) => !prev)}
         >
           {darkMode ? <IoMoonOutline /> : <IoSunnyOutline />}
