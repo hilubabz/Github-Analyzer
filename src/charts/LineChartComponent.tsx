@@ -32,7 +32,7 @@ const LineChartComponent = ({ data }: { data: CommitType[] }) => {
   // console.log(lineChartData);
 
   return (
-    <div className="bg-[var(--card)] text-[var(--text)] rounded-xl shadow-xl p-4 transition-all duration-500 ease-in-out">
+    <div className="bg-(--card) text-(--text) rounded-xl shadow-xl p-4 transition-all duration-500 ease-in-out">
       <div className="text-2xl font-semibold p-2 text-center" ref={ref}>
         Recent Commits
       </div>

@@ -28,7 +28,7 @@ export default function PieChartComponent({ data }: { data: RepoType[] }) {
   const pieData = getLanguageData(data);
 
   return (
-    <div className="bg-[var(--card)] text-[var(--text)] shadow-lg rounded-xl flex flex-col items-center justify-center pt-2 transition-all duration-500 ease-in-out">
+    <div className="bg-(--card) text-(--text) shadow-lg rounded-xl flex flex-col items-center justify-center pt-2 transition-all duration-500 ease-in-out">
       <div className="text-2xl font-semibold p-2" ref={ref}>
         Top Languages
       </div>

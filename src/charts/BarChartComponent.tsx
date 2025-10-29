@@ -47,7 +47,7 @@ const BarChartComponent = ({ repos }: { repos: RepoType[] }) => {
     }
   });
   return (
-    <div className="bg-[var(--card)] text-[var(--text)] rounded-xl shadow-xl p-5 transition-all duration-500 ease-in-out">
+    <div className="bg-(--card) text-(--text) rounded-xl shadow-xl p-5 transition-all duration-500 ease-in-out">
       <div className="text-2xl font-semibold p-2 text-center" ref={ref}>
         Most Starred Repositories
       </div>
