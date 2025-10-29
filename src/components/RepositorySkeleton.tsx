@@ -83,7 +83,7 @@ const RepositoriesSkeleton = () => {
 
   return (
     <div className="max-w-7xl mx-auto">
-      <div className="bg-[var(--card)] transition-all duration-500 ease-in-out rounded-lg shadow-lg overflow-hidden">
+      <div className="bg-(--card) transition-all duration-500 ease-in-out rounded-lg shadow-lg overflow-hidden">
         <div className="px-6 py-4">
           <h2 className="text-2xl font-bold">Repositories</h2>
           <p className="w-[100px] h-5 rounded-2xl bg-gray-500 animate-pulse"></p>
@@ -91,7 +91,7 @@ const RepositoriesSkeleton = () => {
 
         <div className="overflow-x-auto">
           <table className="min-w-full table-fixed">
-            <thead className="bg-[var(--card)] transition-all duration-500 ease-in-out border-b border-gray-200">
+            <thead className="bg-(--card) transition-all duration-500 ease-in-out border-b border-gray-200">
               {table.getHeaderGroups().map((headerGroup) => (
                 <tr key={headerGroup.id}>
                   {headerGroup.headers.map((header) => (
@@ -115,7 +115,7 @@ const RepositoriesSkeleton = () => {
                 </tr>
               ))}
             </thead>
-            <tbody className="bg-[var(--card)] transition-all duration-500 ease-in-out divide-y divide-gray-200">
+            <tbody className="bg-(--card) transition-all duration-500 ease-in-out divide-y divide-gray-200">
               {table.getRowModel().rows.map((row) => (
                 <tr key={row.id} className="hover:bg-gray-50 transition-colors">
                   {row.getVisibleCells().map((cell) => (
@@ -140,7 +140,7 @@ const RepositoriesSkeleton = () => {
           </table>
         </div>
 
-        <div className="px-6 py-4 bg-[var(--card)] transition-all duration-500 ease-in-out border-t border-gray-200 flex items-center justify-between">
+        <div className="px-6 py-4 bg-(--card) transition-all duration-500 ease-in-out border-t border-gray-200 flex items-center justify-between">
           <div className="flex items-center gap-2">
             <span className="w-[200px] h-5 bg-gray-500 animate-pulse rounded-xl"></span>
           </div>
