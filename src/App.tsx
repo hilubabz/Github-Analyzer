@@ -15,7 +15,10 @@ import Repositories from "./components/Repositories";
 import { useQueryClient } from "@tanstack/react-query";
 const App = () => {
   const [query, setQuery] = useState<string>("");
-  const [darkMode, setDarkMode] = useState<boolean>(false);
+  const [darkMode, setDarkMode] = useState<boolean>(() => {
+    const stored = localStorage.getItem("darkMode");
+    return stored ? JSON.parse(stored) : false;
+  });
   const [active, setActive] = useState<boolean>(true);
   const repos = useGithubData(query);
   const userData = useGithubUserData(query);
@@ -39,6 +42,7 @@ const App = () => {
 
   useEffect(() => {
     document.documentElement.classList.toggle("dark", darkMode);
+    localStorage.setItem("darkMode", JSON.stringify(darkMode));
   }, [darkMode]);
   return (
     <div
