@@ -58,5 +58,4 @@ const Profile = ({ userData }: ProfileProps) => {
     </div>
   );
 };
-
 export default Profile;

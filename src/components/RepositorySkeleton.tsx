@@ -152,5 +152,4 @@ const RepositoriesSkeleton = () => {
     </div>
   );
 };
-
 export default RepositoriesSkeleton;

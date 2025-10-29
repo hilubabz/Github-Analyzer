@@ -220,5 +220,4 @@ const Repositories = ({ data }: { data: RepoType[] }) => {
     </div>
   );
 };
-
 export default Repositories;

@@ -6,5 +6,4 @@ const ChartSkeleton = ({ title }: { title: string }) => {
     </div>
   );
 };
-
 export default ChartSkeleton;
