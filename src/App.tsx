@@ -13,7 +13,7 @@ import ProfileSkeleton from "./components/ProfileSkeleton";
 import RepositoriesSkeleton from "./components/RepositoriesSkeleton";
 import ChartSkeleton from "./components/ChartSkeleton";
 const App = () => {
-  const [query, setQuery] = useState<string>("");
+  const [query, setQuery] = useState<string>(" ");
   const [darkMode, setDarkMode] = useState<boolean>(false);
   const [active, setActive] = useState<boolean>(true);
   const repos = useGithubData(query);
