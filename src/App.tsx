@@ -12,20 +12,25 @@ import RepositoriesSkeleton from "./components/RepositorySkeleton";
 import Profile from "./components/Profile";
 import LineChartComponent from "./charts/LineChartComponent";
 import Repositories from "./components/Repositories";
+import { useQueryClient } from "@tanstack/react-query";
 const App = () => {
-  const [query, setQuery] = useState<string>(" ");
+  const [query, setQuery] = useState<string>("");
   const [darkMode, setDarkMode] = useState<boolean>(false);
   const [active, setActive] = useState<boolean>(true);
   const repos = useGithubData(query);
   const userData = useGithubUserData(query);
   const userCommits = useGithubUserCommits(query);
+  const queryClient = useQueryClient();
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    setQuery("");
     setActive(false);
+    queryClient.resetQueries({ queryKey: ["githubUserData"] });
+    queryClient.resetQueries({ queryKey: ["githubUserCommits"] });
+    queryClient.resetQueries({ queryKey: ["githubData"] });
     repos.refetch();
     userData.refetch();
     userCommits.refetch();
+    setQuery("");
     // console.log('Success')
   };
   // console.log(data)
@@ -75,7 +80,7 @@ const App = () => {
           {darkMode ? <IoMoonOutline /> : <IoSunnyOutline />}
         </div>
       </div>
-      {userData.isLoading && repos.isLoading && userCommits.isLoading ? (
+      {userData.isFetching && repos.isFetching && userCommits.isFetching ? (
         <div className="grid grid-cols-1 md:grid-cols-2 mt-10 max-w-[100vw] gap-4">
           <div className="space-y-4">
             <ProfileSkeleton />
