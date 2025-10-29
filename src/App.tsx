@@ -1,17 +1,17 @@
 import { IoSunnyOutline, IoMoonOutline } from "react-icons/io5";
 import { CiSearch } from "react-icons/ci";
 import { useEffect, useState, type FormEvent } from "react";
-import useGithubData from "./hooks/useGithubData";
-import Profile from "./components/Profile";
-import useGithubUserData from "./hooks/useGithubUserData";
-import Repositories from "./components/Repositories";
 import PieChartComponent from "./charts/PieChartComponent";
 import BarChartComponent from "./charts/BarChartComponent";
-import useGithubUserCommits from "./hooks/useGithubUserCommits";
-import LineChartComponent from "./charts/LineChartComponent";
-import ProfileSkeleton from "./components/ProfileSkeleton";
-import RepositoriesSkeleton from "./components/RepositoriesSkeleton";
 import ChartSkeleton from "./components/ChartSkeleton";
+import useGithubData from "./hooks/useGithubData";
+import useGithubUserData from "./hooks/useGithubUserData";
+import useGithubUserCommits from "./hooks/useGithubUserCommits";
+import ProfileSkeleton from "./components/ProfileSkeleton";
+import RepositoriesSkeleton from "./components/RepositorySkeleton";
+import Profile from "./components/Profile";
+import LineChartComponent from "./charts/LineChartComponent";
+import Repositories from "./components/Repositories";
 const App = () => {
   const [query, setQuery] = useState<string>(" ");
   const [darkMode, setDarkMode] = useState<boolean>(false);
@@ -37,14 +37,14 @@ const App = () => {
   }, [darkMode]);
   return (
     <div
-      className={`px-5 lg:px-10 pt-10 min-h-[100vh] bg-(--bg) text-(--text) transition-all duration-500 ease-in-out pb-2 max-w-[100vw]`}
+      className={`px-5 lg:px-10 pt-10 min-h-screen bg-(--bg) text-(--text) transition-all duration-500 ease-in-out pb-2 max-w-[100vw]`}
     >
       <div
         className={`flex justify-between p-5 shadow-lg rounded-xl items-center bg-(--card)`}
       >
         <div className="flex gap:10 md:gap-30 w-[75%] items-center">
           <div className="font-semibold text-sm md:text-xl">Repo Analyzer</div>
-          <div className="flex gap-2 w-[70%] items-center border-gray-300 border-1 p-2 rounded-xl">
+          <div className="flex gap-2 w-[70%] items-center border-gray-300 border p-2 rounded-xl">
             <CiSearch />
             <form onSubmit={(e) => handleSubmit(e)} className="w-full">
               <input
@@ -69,7 +69,7 @@ const App = () => {
           </div>
         </div>
         <div
-          className="lg:hidden h-10 w-10 flex items-center justify-center text-2xl bg-[var(--background)] text-(--text) shadow-lg rounded-2xl"
+          className="lg:hidden h-10 w-10 flex items-center justify-center text-2xl bg-(--bg) text-(--text) shadow-lg rounded-2xl"
           onClick={() => setDarkMode((prev) => !prev)}
         >
           {darkMode ? <IoMoonOutline /> : <IoSunnyOutline />}
