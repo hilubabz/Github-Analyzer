@@ -37,7 +37,7 @@ const App = () => {
   }, [darkMode]);
   return (
     <div
-      className={`px-5 lg:px-10 pt-10 min-h-[100vh] bg-[var(--bg)] text-(--text) transition-all duration-500 ease-in-out pb-2 max-w-[100vw]`}
+      className={`px-5 lg:px-10 pt-10 min-h-[100vh] bg-(--bg) text-(--text) transition-all duration-500 ease-in-out pb-2 max-w-[100vw]`}
     >
       <div
         className={`flex justify-between p-5 shadow-lg rounded-xl items-center bg-(--card)`}
