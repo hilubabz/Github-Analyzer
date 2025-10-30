@@ -39,7 +39,7 @@ const Profile = ({
           </div>
         </div>
       </div>
-      <div className="flex gap-4 items-center justify-center pt-7 text-lg">
+      <div className="flex md:gap-4 items-center justify-center pt-7 text-lg">
         <DialogBox
           title="Repositories"
           value={userData?.public_repos}
