@@ -5,12 +5,16 @@ export const githubUserCommits = async (username: string) => {
   const allEvents: CommitType[] = [];
   const perPage = 100;
   const maxPages = 20;
+  const apiKey = import.meta.env.VITE_GITHUB_API_KEY;
 
   for (let page = 1; page <= maxPages; page++) {
     const res = await axios.get(
       `https://api.github.com/users/${username}/events/public`,
       {
         params: { per_page: perPage, page },
+        headers: {
+          Authorization: `token ${apiKey}`,
+        },
       },
     );
 

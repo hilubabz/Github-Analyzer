@@ -13,6 +13,8 @@ import Profile from "./components/Profile";
 import LineChartComponent from "./charts/LineChartComponent";
 import Repositories from "./components/Repositories";
 import { useQueryClient } from "@tanstack/react-query";
+import useGithubFollowers from "./hooks/useGithubFollowers";
+import useGithubFollowing from "./hooks/useGithubFollowing";
 const App = () => {
   const [query, setQuery] = useState<string>("");
   const [darkMode, setDarkMode] = useState<boolean>(() => {
@@ -23,6 +25,8 @@ const App = () => {
   const repos = useGithubData(query);
   const userData = useGithubUserData(query);
   const userCommits = useGithubUserCommits(query);
+  const followers = useGithubFollowers(query);
+  const following = useGithubFollowing(query);
   const queryClient = useQueryClient();
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
@@ -30,15 +34,21 @@ const App = () => {
     queryClient.resetQueries({ queryKey: ["githubUserData"] });
     queryClient.resetQueries({ queryKey: ["githubUserCommits"] });
     queryClient.resetQueries({ queryKey: ["githubData"] });
+    queryClient.resetQueries({ queryKey: ["githubFollowers"] });
+    queryClient.resetQueries({ queryKey: ["githubFollowing"] });
     repos.refetch();
     userData.refetch();
     userCommits.refetch();
+    followers.refetch();
+    following.refetch();
     setQuery("");
     // console.log('Success')
   };
   // console.log(data)
   // console.log(userData.data);
   // console.log(userCommits)
+  console.log(followers.data);
+  // console.log(following)
 
   useEffect(() => {
     document.documentElement.classList.toggle("dark", darkMode);
