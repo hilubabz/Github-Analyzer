@@ -15,7 +15,13 @@ interface ColumnMeta {
   width?: string;
 }
 
-const Repositories = ({ data }: { data: RepoType[] }) => {
+const Repositories = ({
+  data,
+  dialog,
+}: {
+  data: RepoType[];
+  dialog: boolean;
+}) => {
   const columnHelper = createColumnHelper<RepoType>();
   const columns = [
     columnHelper.accessor("name", {
@@ -98,7 +104,7 @@ const Repositories = ({ data }: { data: RepoType[] }) => {
   const [sorting, setSorting] = useState([{ id: "pushed_at", desc: true }]);
   const [pagination, setPagination] = useState({
     pageIndex: 0,
-    pageSize: 5,
+    pageSize: dialog ? data.length : 5,
   });
 
   const table = useReactTable({
@@ -115,10 +121,12 @@ const Repositories = ({ data }: { data: RepoType[] }) => {
   return (
     <div className="max-w-7xl mx-auto ">
       <div className="bg-card rounded-lg shadow-lg overflow-hidden transition-all duration-500 ease-in-out">
-        <div className="px-6 py-4">
-          <h2 className="text-2xl font-bold">Repositories</h2>
-          <p className="text-sm mt-1">{data.length} repositories found</p>
-        </div>
+        {!dialog && (
+          <div className="px-6 py-4">
+            <h2 className="text-2xl font-bold">Repositories</h2>
+            <p className="text-sm mt-1">{data.length} repositories found</p>
+          </div>
+        )}
 
         <div className="overflow-x-auto">
           <table className="min-w-full table-fixed transition-colors duration-500 ease-in-out">
@@ -177,45 +185,51 @@ const Repositories = ({ data }: { data: RepoType[] }) => {
           </table>
         </div>
 
-        <div className="px-6 py-4 border-t border-gray-200 flex items-center justify-between bg-card text-(--text) transition-colors duration-500">
-          <div className="flex items-center gap-2">
-            <span className="text-sm">
-              Showing{" "}
-              <span className="font-medium">
-                {pagination.pageIndex * pagination.pageSize + 1}
-              </span>{" "}
-              to{" "}
-              <span className="font-medium">
-                {Math.min(
-                  (pagination.pageIndex + 1) * pagination.pageSize,
-                  data.length,
-                )}
-              </span>{" "}
-              of <span className="font-medium">{data.length}</span> results
-            </span>
+        {!dialog && (
+          <div className="px-6 py-4 border-t border-gray-200 flex items-center justify-between bg-card text-(--text) transition-colors duration-500">
+            <div className="flex items-center gap-2">
+              <span className="text-sm">
+                Showing{" "}
+                <span className="font-medium">
+                  {pagination.pageIndex * pagination.pageSize + 1}
+                </span>{" "}
+                to{" "}
+                <span className="font-medium">
+                  {Math.min(
+                    (pagination.pageIndex + 1) * pagination.pageSize,
+                    data.length,
+                  )}
+                </span>{" "}
+                of <span className="font-medium">{data.length}</span> results
+              </span>
+            </div>
+            {
+              <div className="flex items-center gap-2">
+                <button
+                  className="px-4 py-2 bg-card border border-gray-300 rounded-md text-sm font-medium text-(--text) hover:bg-opacity-90 disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200"
+                  onClick={() => table.previousPage()}
+                  disabled={!table.getCanPreviousPage()}
+                >
+                  Previous
+                </button>
+                <span className="px-4 py-2 text-sm">
+                  Page{" "}
+                  <span className="font-medium">
+                    {pagination.pageIndex + 1}
+                  </span>{" "}
+                  of <span className="font-medium">{table.getPageCount()}</span>
+                </span>
+                <button
+                  className="px-4 py-2 bg-card border border-gray-300 rounded-md text-sm font-medium text-(--text) hover:bg-opacity-90 disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200"
+                  onClick={() => table.nextPage()}
+                  disabled={!table.getCanNextPage()}
+                >
+                  Next
+                </button>
+              </div>
+            }
           </div>
-          <div className="flex items-center gap-2">
-            <button
-              className="px-4 py-2 bg-card border border-gray-300 rounded-md text-sm font-medium text-(--text) hover:bg-opacity-90 disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200"
-              onClick={() => table.previousPage()}
-              disabled={!table.getCanPreviousPage()}
-            >
-              Previous
-            </button>
-            <span className="px-4 py-2 text-sm">
-              Page{" "}
-              <span className="font-medium">{pagination.pageIndex + 1}</span> of{" "}
-              <span className="font-medium">{table.getPageCount()}</span>
-            </span>
-            <button
-              className="px-4 py-2 bg-card border border-gray-300 rounded-md text-sm font-medium text-(--text) hover:bg-opacity-90 disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200"
-              onClick={() => table.nextPage()}
-              disabled={!table.getCanNextPage()}
-            >
-              Next
-            </button>
-          </div>
-        </div>
+        )}
       </div>
     </div>
   );

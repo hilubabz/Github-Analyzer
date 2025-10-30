@@ -120,6 +120,7 @@ const App = () => {
               userData={userData.data}
               followers={followers?.data ?? []}
               following={following?.data ?? []}
+              repos={repos.data ?? []}
             />
             <div className="hidden md:block space-y-4">
               <PieChartComponent data={repos.data ?? []} />
@@ -128,7 +129,7 @@ const App = () => {
             </div>
           </div>
           <div className="space-y-4">
-            <Repositories data={repos.data ?? []} />
+            <Repositories data={repos.data ?? []} dialog={false} />
 
             <BarChartComponent repos={repos.data ?? []} />
 

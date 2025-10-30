@@ -1,15 +1,20 @@
 import type { FollowerFollowingType } from "@/services/FollowerFollowing.type";
-import DialogBox from "./DialogBox";
 import type { UserData } from "@/services/UserData.type";
+import FollowerFollowingDialog from "./FollowerFollowingDialog";
+import DialogBox from "./DialogBox";
+import Repositories from "./Repositories";
+import type { RepoType } from "@/services/repository.type";
 
 const Profile = ({
   userData,
   followers,
   following,
+  repos,
 }: {
   userData: UserData;
   followers: FollowerFollowingType[];
   following: FollowerFollowingType[];
+  repos: RepoType[];
 }) => {
   return (
     <div className=" bg-card shadow-lg rounded-xl p-7 transition-all duration-500">
@@ -35,25 +40,23 @@ const Profile = ({
         </div>
       </div>
       <div className="flex gap-4 items-center justify-center pt-7 text-lg">
-        <div>
-          <span className="font-bold">{userData?.public_repos}</span>{" "}
-          Repositories
-        </div>
         <DialogBox
+          title="Repositories"
+          value={userData?.public_repos}
+          repo={true}
+        >
+          <Repositories data={repos} dialog={true} />
+        </DialogBox>
+        <FollowerFollowingDialog
           title="Followers"
           value={userData?.followers}
           data={followers}
-        >
-          {/* <span className="font-bold">{userData?.followers}</span> Followers */}
-        </DialogBox>
-        <div>
-          {/* <span className="font-bold">{userData?.following}</span> Following */}
-          <DialogBox
-            title="Following"
-            value={userData?.following}
-            data={following}
-          />
-        </div>
+        />
+        <FollowerFollowingDialog
+          title="Following"
+          value={userData?.following}
+          data={following}
+        />
       </div>
     </div>
   );
