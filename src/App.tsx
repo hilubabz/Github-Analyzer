@@ -4,7 +4,7 @@ import { useEffect, useState, type FormEvent } from "react";
 import PieChartComponent from "./charts/PieChartComponent";
 import BarChartComponent from "./charts/BarChartComponent";
 import ChartSkeleton from "./components/ChartSkeleton";
-import useGithubData from "./hooks/useGithubData";
+import useGithubData from "./components/useGithubData";
 import useGithubUserData from "./hooks/useGithubUserData";
 import useGithubUserCommits from "./hooks/useGithubUserCommits";
 import ProfileSkeleton from "./components/ProfileSkeleton";
@@ -15,6 +15,7 @@ import Repositories from "./components/Repositories";
 import { useQueryClient } from "@tanstack/react-query";
 import useGithubFollowers from "./hooks/useGithubFollowers";
 import useGithubFollowing from "./hooks/useGithubFollowing";
+
 const App = () => {
   const [query, setQuery] = useState<string>("");
   const [darkMode, setDarkMode] = useState<boolean>(() => {
@@ -47,7 +48,7 @@ const App = () => {
   // console.log(data)
   // console.log(userData.data);
   // console.log(userCommits)
-  console.log(followers.data);
+  // console.log(followers.data);
   // console.log(following)
 
   useEffect(() => {
@@ -59,7 +60,7 @@ const App = () => {
       className={`px-5 lg:px-10 pt-10 min-h-screen bg-(--bg) text-(--text) transition-all duration-500 ease-in-out pb-2 max-w-[100vw]`}
     >
       <div
-        className={`flex justify-between p-5 shadow-lg rounded-xl items-center bg-(--card)`}
+        className={`flex justify-between p-5 shadow-lg rounded-xl items-center bg-card)`}
       >
         <div className="flex gap:10 md:gap-30 w-[75%] items-center">
           <div className="font-semibold text-sm md:text-xl">Repo Analyzer</div>
@@ -115,7 +116,11 @@ const App = () => {
       ) : (
         <div className="grid grid-cols-1 lg:grid-cols-2 mt-10 max-w-[100vw] gap-4">
           <div className="space-y-4">
-            <Profile userData={userData.data} />
+            <Profile
+              userData={userData.data}
+              followers={followers?.data ?? []}
+              following={following?.data ?? []}
+            />
             <div className="hidden md:block space-y-4">
               <PieChartComponent data={repos.data ?? []} />
 

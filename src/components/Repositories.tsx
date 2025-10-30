@@ -114,7 +114,7 @@ const Repositories = ({ data }: { data: RepoType[] }) => {
 
   return (
     <div className="max-w-7xl mx-auto ">
-      <div className="bg-(--card) rounded-lg shadow-lg overflow-hidden transition-all duration-500 ease-in-out">
+      <div className="bg-card rounded-lg shadow-lg overflow-hidden transition-all duration-500 ease-in-out">
         <div className="px-6 py-4">
           <h2 className="text-2xl font-bold">Repositories</h2>
           <p className="text-sm mt-1">{data.length} repositories found</p>
@@ -126,7 +126,7 @@ const Repositories = ({ data }: { data: RepoType[] }) => {
               {table.getHeaderGroups().map((headerGroup) => (
                 <tr
                   key={headerGroup.id}
-                  className="bg-(--card) text-(--text) transition-colors duration-500 ease-in-out"
+                  className="bg-card text-(--text) transition-colors duration-500 ease-in-out"
                 >
                   {headerGroup.headers.map((header) => (
                     <th
@@ -149,11 +149,11 @@ const Repositories = ({ data }: { data: RepoType[] }) => {
                 </tr>
               ))}
             </thead>
-            <tbody className="bg-(--card) divide-y divide-gray-200 transition-colors duration-500">
+            <tbody className="bg-card divide-y divide-gray-200 transition-colors duration-500">
               {table.getRowModel().rows.map((row) => (
                 <tr
                   key={row.id}
-                  className="bg-(--card) text-(--text) transition-colors duration-500"
+                  className="bg-card text-(--text) transition-colors duration-500"
                 >
                   {row.getVisibleCells().map((cell) => (
                     <td
@@ -177,7 +177,7 @@ const Repositories = ({ data }: { data: RepoType[] }) => {
           </table>
         </div>
 
-        <div className="px-6 py-4 border-t border-gray-200 flex items-center justify-between bg-(--card) text-(--text) transition-colors duration-500">
+        <div className="px-6 py-4 border-t border-gray-200 flex items-center justify-between bg-card text-(--text) transition-colors duration-500">
           <div className="flex items-center gap-2">
             <span className="text-sm">
               Showing{" "}
@@ -196,7 +196,7 @@ const Repositories = ({ data }: { data: RepoType[] }) => {
           </div>
           <div className="flex items-center gap-2">
             <button
-              className="px-4 py-2 bg-(--card) border border-gray-300 rounded-md text-sm font-medium text-(--text) hover:bg-opacity-90 disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200"
+              className="px-4 py-2 bg-card border border-gray-300 rounded-md text-sm font-medium text-(--text) hover:bg-opacity-90 disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200"
               onClick={() => table.previousPage()}
               disabled={!table.getCanPreviousPage()}
             >
@@ -208,7 +208,7 @@ const Repositories = ({ data }: { data: RepoType[] }) => {
               <span className="font-medium">{table.getPageCount()}</span>
             </span>
             <button
-              className="px-4 py-2 bg-(--card) border border-gray-300 rounded-md text-sm font-medium text-(--text) hover:bg-opacity-90 disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200"
+              className="px-4 py-2 bg-card border border-gray-300 rounded-md text-sm font-medium text-(--text) hover:bg-opacity-90 disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200"
               onClick={() => table.nextPage()}
               disabled={!table.getCanNextPage()}
             >

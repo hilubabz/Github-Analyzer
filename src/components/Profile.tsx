@@ -1,27 +1,18 @@
-type UserData = {
-  login: string;
-  avatar_url: string;
-  url: string;
-  followers: number;
-  following: number;
-  name: string;
-  blog: string;
-  location: string;
-  email: string;
-  bio: string;
-  public_repos: number;
-  created_at: string;
-  updated_at: string;
-  html_url: string;
-};
+import type { FollowerFollowingType } from "@/services/FollowerFollowing.type";
+import DialogBox from "./DialogBox";
+import type { UserData } from "@/services/UserData.type";
 
-interface ProfileProps {
+const Profile = ({
+  userData,
+  followers,
+  following,
+}: {
   userData: UserData;
-}
-
-const Profile = ({ userData }: ProfileProps) => {
+  followers: FollowerFollowingType[];
+  following: FollowerFollowingType[];
+}) => {
   return (
-    <div className=" bg-(--card) shadow-lg rounded-xl p-7 transition-all duration-500">
+    <div className=" bg-card shadow-lg rounded-xl p-7 transition-all duration-500">
       <div className="flex flex-col md:flex-row justify-center items-center gap-2 shrink-0">
         <div className="h-[150px] w-[150px] rounded-full overflow-hidden shrink-0">
           <img
@@ -48,11 +39,20 @@ const Profile = ({ userData }: ProfileProps) => {
           <span className="font-bold">{userData?.public_repos}</span>{" "}
           Repositories
         </div>
+        <DialogBox
+          title="Followers"
+          value={userData?.followers}
+          data={followers}
+        >
+          {/* <span className="font-bold">{userData?.followers}</span> Followers */}
+        </DialogBox>
         <div>
-          <span className="font-bold">{userData?.followers}</span> Followers
-        </div>
-        <div>
-          <span className="font-bold">{userData?.following}</span> Following
+          {/* <span className="font-bold">{userData?.following}</span> Following */}
+          <DialogBox
+            title="Following"
+            value={userData?.following}
+            data={following}
+          />
         </div>
       </div>
     </div>
